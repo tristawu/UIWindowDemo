@@ -17,20 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         //guard let _ = (scene as? UIWindowScene) else { return }
+        if let windowScene = (scene as? UIWindowScene) {
+              
+            //建立一個 UIWindow ，用來顯示應用程式所有畫面的視窗
+            //iOS下只會有一個視窗，就是self.window
+            self.window = UIWindow(windowScene: windowScene)
+            
+            //設置底色
+            self.window!.backgroundColor = UIColor.white
+            
+            //設置rootViewController，也就是應用程式啟動後進到的第一個View所處的ViewController，也可以依照需求設置成自己另外建立的UIViewController
+            self.window!.rootViewController = ViewController();
         
-        //建立一個 UIWindow ，用來顯示應用程式所有畫面的視窗
-        //iOS下只會有一個視窗，就是self.window
-        self.window = UIWindow(frame:UIScreen.main.bounds)
-                
-        //設置底色
-        self.window!.backgroundColor = UIColor.white
-        
-        //設置rootViewController，也就是應用程式啟動後進到的第一個View所處的ViewController，也可以依照需求設置成自己另外建立的UIViewController
-        self.window!.rootViewController = ViewController();
-    
-        //將UIWindow以makeKeyAndVisible()方法設置為可見的，完成手動建立頁面
-        self.window!.makeKeyAndVisible()
-        
+            //將UIWindow以makeKeyAndVisible()方法設置為可見的，完成手動建立頁面
+            self.window!.makeKeyAndVisible()
+           
+        }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
