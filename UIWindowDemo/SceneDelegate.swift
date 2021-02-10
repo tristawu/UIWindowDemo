@@ -11,12 +11,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        //guard let _ = (scene as? UIWindowScene) else { return }
+        
+        //建立一個 UIWindow ，用來顯示應用程式所有畫面的視窗
+        //iOS下只會有一個視窗，就是self.window
+        self.window = UIWindow(frame:UIScreen.main.bounds)
+                
+        //設置底色
+        self.window!.backgroundColor = UIColor.white
+        
+        //設置rootViewController，也就是應用程式啟動後進到的第一個View所處的ViewController，也可以依照需求設置成自己另外建立的UIViewController
+        self.window!.rootViewController = ViewController();
+    
+        //將UIWindow以makeKeyAndVisible()方法設置為可見的，完成手動建立頁面
+        self.window!.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
